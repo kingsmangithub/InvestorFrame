@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>InvestorFrame Report — {{ data.run_id }}</title>
+  <style>
+    :root {
+      --bg: #f8f9fa; --card: #ffffff; --border: #dee2e6;
+      --text: #212529; --muted: #6c757d;
+      --green: #198754; --red: #dc3545; --yellow: #ffc107; --blue: #0d6efd;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+           background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    h2 { font-size: 1.3rem; margin: 1.5rem 0 0.75rem; border-bottom: 2px solid var(--border); padding-bottom: 0.25rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-value { font-size: 1.5rem; font-weight: 700; }
+    .bullish { color: var(--green); } .bearish { color: var(--red); }
+    .neutral { color: var(--muted); } .mixed { color: var(--yellow); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+    th { background: var(--bg); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+    .badge-green { background: #d1e7dd; color: #0a3622; }
+    .badge-red { background: #f8d7da; color: #58151c; }
+    .badge-yellow { background: #fff3cd; color: #664d03; }
+    .badge-blue { background: #cfe2ff; color: #052c65; }
+    .badge-gray { background: #e9ecef; color: #495057; }
+    .disclaimer { background: #fff3cd; border-left: 4px solid var(--yellow); padding: 0.75rem 1rem; margin: 0.5rem 0; font-size: 0.85rem; }
+    .flag { padding: 0.4rem 0; font-size: 0.85rem; }
+    .score-bar { display: inline-block; height: 8px; border-radius: 4px; min-width: 4px; }
+    footer { margin-top: 2rem; text-align: center; color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>InvestorFrame Market Intelligence</h1>
+  <div class="meta">
+    Run {{ data.run_id }} &middot; {{ generated_at }} &middot;
+    Status: <span class="badge {% if data.status == 'completed' %}badge-green{% elif data.status == 'failed' %}badge-red{% else %}badge-yellow{% endif %}">{{ data.status }}</span>
+  </div>
+
+  {# ── Overview Cards ─────────────────────────────── #}
+  <div class="grid">
+    <div class="card">
+      <div class="stat-label">Market Regime</div>
+      {% if data.regime %}
+      <div class="stat-value {% if data.regime.state == 'risk_on' %}bullish{% elif data.regime.state == 'risk_off' %}bearish{% else %}neutral{% endif %}">
+        {{ data.regime.state | replace("_", " ") | upper }}
+      </div>
+      <div class="stat-label">Confidence: {{ "%.0f" | format(data.regime.confidence * 100) }}%</div>
+      {% else %}
+      <div class="stat-value neutral">N/A</div>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <div class="stat-label">Aggregate Sentiment</div>
+      {% if data.sentiment %}
+      <div class="stat-value {% if data.sentiment.composite_score > 0.1 %}bullish{% elif data.sentiment.composite_score < -0.1 %}bearish{% else %}neutral{% endif %}">
+        {{ "%+.2f" | format(data.sentiment.composite_score) }}
+      </div>
+      <div class="stat-label">{{ data.sentiment.label }}</div>
+      {% else %}
+      <div class="stat-value neutral">N/A</div>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <div class="stat-label">Events Processed</div>
+      <div class="stat-value">{{ data.event_count }}</div>
+    </div>
+
+    <div class="card">
+      <div class="stat-label">Duration</div>
+      <div class="stat-value">{{ "%.1f" | format(data.duration_seconds) }}s</div>
+    </div>
+  </div>
+
+  {# ── Sector Scores ─────────────────────────────── #}
+  {% if data.sector_scores %}
+  <h2>Sector Scores</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Sector</th><th>Score</th><th>Direction</th><th>Confidence</th><th>Events</th><th>Top Drivers</th></tr>
+      </thead>
+      <tbody>
+        {% for s in data.sector_scores %}
+        <tr>
+          <td>{{ s.rank }}</td>
+          <td><strong>{{ s.name }}</strong> ({{ s.symbol }})</td>
+          <td>
+            <span class="{% if s.score > 0 %}bullish{% elif s.score < 0 %}bearish{% else %}neutral{% endif %}">
+              {{ "%+.1f" | format(s.score) }}
+            </span>
+          </td>
+          <td>
+            <span class="badge {% if s.direction == 'bullish' %}badge-green{% elif s.direction == 'bearish' %}badge-red{% elif s.direction == 'mixed' %}badge-yellow{% else %}badge-gray{% endif %}">
+              {{ s.direction }}
+            </span>
+          </td>
+          <td>{{ "%.0f" | format(s.confidence * 100) }}%</td>
+          <td>{{ s.event_count }}</td>
+          <td style="font-size:0.8rem;">{{ s.top_drivers | join("; ") | truncate(120) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {# ── Watchlist Scores ──────────────────────────── #}
+  {% if data.stock_scores %}
+  <h2>Watchlist Scores</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>#</th><th>Stock</th><th>Sector</th><th>Signal</th><th>Label</th><th>Tailwind</th><th>Headwind</th><th>Confidence</th></tr>
+      </thead>
+      <tbody>
+        {% for s in data.stock_scores %}
+        <tr>
+          <td>{{ s.rank }}</td>
+          <td><strong>{{ s.name }}</strong> ({{ s.symbol }})</td>
+          <td>{{ s.sector_name }}</td>
+          <td>
+            <span class="{% if s.net_signal > 0 %}bullish{% elif s.net_signal < 0 %}bearish{% else %}neutral{% endif %}">
+              {{ "%+.1f" | format(s.net_signal) }}
+            </span>
+          </td>
+          <td>
+            <span class="badge {% if 'tailwind' in s.label %}badge-green{% elif 'headwind' in s.label %}badge-red{% elif s.label == 'neutral' %}badge-gray{% else %}badge-yellow{% endif %}">
+              {{ s.label | replace("_", " ") }}
+            </span>
+          </td>
+          <td class="bullish">{{ "%.1f" | format(s.tailwind_score) }}</td>
+          <td class="bearish">{{ "%.1f" | format(s.headwind_score) }}</td>
+          <td>{{ "%.0f" | format(s.confidence * 100) }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  {# ── Risk Assessment ───────────────────────────── #}
+  {% if data.risk_assessment %}
+  <h2>Risk Assessment</h2>
+  <div class="card">
+    <p>
+      <strong>Overall:</strong>
+      <span class="badge {% if data.risk_assessment.passed %}badge-green{% else %}badge-red{% endif %}">
+        {{ "PASSED" if data.risk_assessment.passed else "FAILED" }}
+      </span>
+    </p>
+    {% if data.risk_assessment.flags %}
+    <h3 style="font-size:1rem;margin-top:0.75rem;">Risk Flags</h3>
+    {% for f in data.risk_assessment.flags %}
+    <div class="flag">
+      <span class="badge {% if f.severity >= 4 %}badge-red{% elif f.severity >= 3 %}badge-yellow{% else %}badge-gray{% endif %}">{{ f.code }}</span>
+      {{ f.message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {# ── Disclaimers ───────────────────────────────── #}
+  {% if data.risk_assessment and data.risk_assessment.disclaimers %}
+  <h2>Disclaimers</h2>
+  {% for d in data.risk_assessment.disclaimers %}
+  <div class="disclaimer">{{ d }}</div>
+  {% endfor %}
+  {% endif %}
+
+  <footer>
+    InvestorFrame v0.1.0 &mdash; For informational and educational purposes only.
+  </footer>
+</div>
+</body>
+</html>

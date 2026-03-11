@@ -1,0 +1,35 @@
+{
+  "run_id": "a3f8c1e204b7",
+  "status": "completed",
+  "started_at": "2025-03-07T14:30:00Z",
+  "completed_at": "2025-03-07T14:30:12Z",
+  "duration_seconds": 12.4,
+  "regime": {
+    "state": "risk_on",
+    "confidence": 0.72,
+    "contributing_factors": [
+      "VIX at 14.8 (below 16 threshold)",
+      "Yield curve spread positive at 0.42%",
+      "Market breadth 68% above 200-day MA"
+    ],
+    "indicator_values": {
+      "vix_level": 14.8,
+      "yield_curve_spread": 0.42,
+      "market_breadth": 0.68,
+      "trend_strength": 0.55,
+      "consumer_sentiment_zscore": 0.31
+    }
+  },
+  "sentiment": {
+    "label": "moderately_bullish",
+    "composite_score": 0.35,
+    "confidence": 0.61,
+    "signal_count": 18
+  },
+  "event_count": 23,
+  "connector_status": {
+    "fred": "ok",
+    "newsapi": "ok",
+    "yfinance": "ok"
+  }
+}

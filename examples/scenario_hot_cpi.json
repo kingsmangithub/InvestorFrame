@@ -1,0 +1,38 @@
+{
+  "scenario": "inflation_surge",
+  "description": "CPI accelerates above 6% year-over-year",
+  "injected_events": [
+    {
+      "event_type": "economic",
+      "subtype": "inflation_data",
+      "direction": "bearish",
+      "severity": 5,
+      "headline": "CPI surges to 6.2% year-over-year, highest in 18 months"
+    },
+    {
+      "event_type": "monetary_policy",
+      "subtype": "rate_decision",
+      "direction": "bearish",
+      "severity": 4,
+      "headline": "Fed signals emergency rate review amid inflation spike"
+    }
+  ],
+  "deltas": {
+    "XLK": { "baseline": 42.3, "scenario": 18.7, "delta": -23.6 },
+    "XLF": { "baseline": 28.7, "scenario": 35.1, "delta": 6.4 },
+    "XLI": { "baseline": 15.2, "scenario": -2.8, "delta": -18.0 },
+    "XLV": { "baseline": 8.1,  "scenario": 12.5, "delta": 4.4 },
+    "XLE": { "baseline": -12.4, "scenario": 5.3, "delta": 17.7 },
+    "XLY": { "baseline": 5.6,  "scenario": -22.1, "delta": -27.7 },
+    "XLP": { "baseline": 3.2,  "scenario": 9.8, "delta": 6.6 },
+    "XLB": { "baseline": -1.5, "scenario": -8.7, "delta": -7.2 },
+    "XLRE": { "baseline": -5.3, "scenario": -31.2, "delta": -25.9 },
+    "XLU": { "baseline": -3.1, "scenario": -15.6, "delta": -12.5 },
+    "XLC": { "baseline": 11.8, "scenario": -4.2, "delta": -16.0 }
+  },
+  "interpretation": {
+    "most_impacted_negative": ["Consumer Discretionary (-27.7)", "Real Estate (-25.9)", "Technology (-23.6)"],
+    "most_impacted_positive": ["Energy (+17.7)", "Consumer Staples (+6.6)", "Financials (+6.4)"],
+    "regime_note": "An inflation surge of this magnitude would likely trigger a regime shift toward risk_off, which would further amplify bearish sector scores. This scenario shows first-order effects only."
+  }
+}

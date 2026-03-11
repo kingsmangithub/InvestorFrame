@@ -1,0 +1,69 @@
+{
+  "regime_state": "risk_on",
+  "sectors": [
+    {
+      "sector": "XLK",
+      "name": "Technology",
+      "rank": 1,
+      "score": 42.3,
+      "direction": "bullish",
+      "confidence": 0.68,
+      "top_drivers": [
+        "Strong earnings guidance from semiconductor sector",
+        "AI infrastructure spending acceleration",
+        "Rate stability supports growth valuations"
+      ]
+    },
+    {
+      "sector": "XLF",
+      "name": "Financials",
+      "rank": 2,
+      "score": 28.7,
+      "direction": "bullish",
+      "confidence": 0.62,
+      "top_drivers": [
+        "Net interest margin expansion",
+        "Positive yield curve environment",
+        "Consumer credit growth steady"
+      ]
+    },
+    {
+      "sector": "XLI",
+      "name": "Industrials",
+      "rank": 3,
+      "score": 15.2,
+      "direction": "bullish",
+      "confidence": 0.55,
+      "top_drivers": [
+        "ISM Manufacturing above 50",
+        "Infrastructure spending pipeline",
+        "Supply chain normalization"
+      ]
+    },
+    {
+      "sector": "XLV",
+      "name": "Healthcare",
+      "rank": 4,
+      "score": 8.1,
+      "direction": "neutral",
+      "confidence": 0.51,
+      "top_drivers": [
+        "Defensive positioning in mixed environment",
+        "Drug pricing policy uncertainty"
+      ]
+    },
+    {
+      "sector": "XLE",
+      "name": "Energy",
+      "rank": 5,
+      "score": -12.4,
+      "direction": "bearish",
+      "confidence": 0.59,
+      "top_drivers": [
+        "OPEC+ production increase signals",
+        "Demand growth concerns from China slowdown",
+        "Inventory builds above seasonal norms"
+      ]
+    }
+  ]
+}

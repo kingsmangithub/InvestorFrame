@@ -1,0 +1,81 @@
+# Indicator thresholds for market regime detection
+# Each indicator votes for regime states based on its value
+
+version: "1.0"
+
+indicators:
+  vix:
+    source: yfinance
+    symbol: "^VIX"
+    thresholds:
+      risk_on:
+        below: 16.0
+        weight: 0.25
+      risk_off:
+        above: 28.0
+        weight: 0.30
+      uncertainty:
+        range: [20.0, 28.0]
+        weight: 0.20
+
+  yield_curve:
+    source: fred
+    series_id: "T10Y2Y"
+    thresholds:
+      risk_on:
+        above: 0.5
+        weight: 0.20
+      risk_off:
+        below: -0.2
+        weight: 0.25
+      uncertainty:
+        range: [-0.2, 0.5]
+        weight: 0.15
+
+  market_breadth:
+    source: computed
+    description: "Percentage of tracked equities above 50-day MA"
+    thresholds:
+      risk_on:
+        above: 0.65
+        weight: 0.20
+      risk_off:
+        below: 0.35
+        weight: 0.25
+      uncertainty:
+        range: [0.35, 0.65]
+        weight: 0.15
+
+  trend_strength:
+    source: computed
+    description: "Average pct distance from 200-day MA for major indices"
+    thresholds:
+      risk_on:
+        above: 3.0
+        weight: 0.15
+      risk_off:
+        below: -5.0
+        weight: 0.20
+      uncertainty:
+        range: [-5.0, 3.0]
+        weight: 0.10
+
+  consumer_sentiment:
+    source: fred
+    series_id: "UMCSENT"
+    thresholds:
+      risk_on:
+        zscore_above: 0.5
+        weight: 0.10
+      risk_off:
+        zscore_below: -1.0
+        weight: 0.15
+      uncertainty:
+        zscore_range: [-1.0, 0.5]
+        weight: 0.10
+
+# Decision rules
+decision:
+  minimum_confidence: 0.3
+  transition_threshold: 0.45
+  ambiguity_margin: 0.10

@@ -1,0 +1,60 @@
+{
+  "regime_state": "risk_on",
+  "summary": {
+    "tailwind_count": 4,
+    "headwind_count": 2,
+    "neutral_count": 4
+  },
+  "stocks": [
+    {
+      "symbol": "NVDA",
+      "sector": "XLK",
+      "score": 52.8,
+      "label": "strong_tailwind",
+      "beta": 1.65,
+      "explanation": "Inherits strong Technology sector score (+42.3), amplified by above-average beta. AI spending cycle and earnings momentum are primary drivers.",
+      "tailwind_pct": 88,
+      "headwind_pct": 12
+    },
+    {
+      "symbol": "AAPL",
+      "sector": "XLK",
+      "score": 31.4,
+      "label": "tailwind",
+      "beta": 1.18,
+      "explanation": "Benefits from Technology sector strength. Lower beta moderates the signal relative to NVDA.",
+      "tailwind_pct": 76,
+      "headwind_pct": 24
+    },
+    {
+      "symbol": "JPM",
+      "sector": "XLF",
+      "score": 22.1,
+      "label": "tailwind",
+      "beta": 1.12,
+      "explanation": "Positive Financials environment with rate tailwinds. Consumer credit metrics supportive.",
+      "tailwind_pct": 71,
+      "headwind_pct": 29
+    },
+    {
+      "symbol": "JNJ",
+      "sector": "XLV",
+      "score": 5.2,
+      "label": "neutral",
+      "beta": 0.72,
+      "explanation": "Healthcare sector is neutral. Low beta dampens both upside and downside signals.",
+      "tailwind_pct": 54,
+      "headwind_pct": 46
+    },
+    {
+      "symbol": "XOM",
+      "sector": "XLE",
+      "score": -15.8,
+      "label": "headwind",
+      "beta": 1.05,
+      "explanation": "Energy sector facing headwinds from supply-side pressure and demand uncertainty. OPEC+ dynamics are the primary negative driver.",
+      "tailwind_pct": 28,
+      "headwind_pct": 72
+    }
+  ]
+}

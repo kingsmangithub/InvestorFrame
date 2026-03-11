@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* InvestorFrame color system — institutional dark theme */
+    /* Page background: #0B1020 */
+    --background: 223 53% 8%;
+    /* Primary text: #F4F7FB */
+    --foreground: 218 60% 97%;
+    /* Card background: #151E32 */
+    --card: 222 42% 14%;
+    --card-foreground: 218 60% 97%;
+    /* Primary actions */
+    --primary: 218 60% 97%;
+    --primary-foreground: 222 42% 14%;
+    /* Secondary/muted: #11182A */
+    --secondary: 223 46% 11%;
+    --secondary-foreground: 218 60% 97%;
+    /* Muted elements */
+    --muted: 223 46% 11%;
+    /* Muted text: #7F8BA7 */
+    --muted-foreground: 222 17% 58%;
+    /* Accent (hover): #1A2540 */
+    --accent: 221 43% 17%;
+    --accent-foreground: 218 60% 97%;
+    /* Destructive */
+    --destructive: 348 85% 52%;
+    --destructive-foreground: 218 60% 97%;
+    /* Borders: #24314F */
+    --border: 220 38% 23%;
+    --input: 220 38% 23%;
+    --ring: 220 38% 40%;
+    /* Radius: 16px for cards, smaller for badges/buttons */
+    --radius: 0.75rem;
+
+    /* Signal colors — used directly in components */
+    --signal-positive: 157 67% 53%;   /* #3ECF8E */
+    --signal-negative: 348 85% 52%;   /* #F05A7E */
+    --signal-neutral: 218 14% 55%;    /* #8D99AE */
+    --signal-warning: 38 92% 50%;     /* #F59E0B */
+    --signal-special: 233 100% 75%;   /* #7C8CFF */
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Mono font for numbers and code */
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+}
