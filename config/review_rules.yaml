@@ -1,0 +1,12 @@
+version: "1.0"
+review:
+  dimensions:
+    - thesis_quality
+    - process_quality
+    - emotional_discipline
+    - rule_following
+  prompts:
+    - What happened?
+    - What did I miss?
+    - Which rule would have helped?
+    - What should change next time?

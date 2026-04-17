@@ -1,18 +1,9 @@
 export function FooterStatus() {
   return (
-    <footer className="border-t py-3 px-6">
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
-        <div className="flex items-center gap-4">
-          <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            API Connected
-          </span>
-          <span>Source: Demo Data</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span>Last updated: just now</span>
-          <span>v0.1.0</span>
-        </div>
+    <footer className="border-t mt-12">
+      <div className="max-w-5xl mx-auto px-6 py-4 text-xs text-muted-foreground flex items-center justify-between gap-4">
+        <span>Built to make investment decisions calmer, slower, and clearer.</span>
+        <span>Frame • Idea • Review • Wisdom</span>
       </div>
     </footer>
   );

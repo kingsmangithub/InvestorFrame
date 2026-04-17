@@ -1,34 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AppShell } from "@/components/layout/app-shell";
-import { DashboardPage } from "@/pages/dashboard-page";
-import { ScenarioLabPage } from "@/pages/scenario-lab-page";
-import { LandingPage } from "@/pages/landing-page";
+import { HomePage } from "@/pages/home-page";
+import { DeskPage } from "@/pages/desk-page";
+import { IdeaPage } from "@/pages/idea-page";
+import { ReviewsPage } from "@/pages/reviews-page";
+import { RulebookPage } from "@/pages/rulebook-page";
 
 function WithShell({ children }: { children: React.ReactNode }) {
   return <AppShell>{children}</AppShell>;
-}
-
-function ComingSoon({ page }: { page: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      <h2 className="text-xl font-semibold">{page}</h2>
-      <p className="text-sm text-muted-foreground mt-2">Coming soon.</p>
-    </div>
-  );
 }
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Landing page — standalone layout */}
-        <Route path="/" element={<LandingPage />} />
-
-        {/* App pages — wrapped in dashboard shell */}
-        <Route path="/dashboard" element={<WithShell><DashboardPage /></WithShell>} />
-        <Route path="/scenario" element={<WithShell><ScenarioLabPage /></WithShell>} />
-        <Route path="/reports" element={<WithShell><ComingSoon page="Reports" /></WithShell>} />
-        <Route path="/explain" element={<WithShell><ComingSoon page="Explain" /></WithShell>} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/desk" element={<WithShell><DeskPage /></WithShell>} />
+        <Route path="/ideas/:ticker" element={<WithShell><IdeaPage /></WithShell>} />
+        <Route path="/reviews" element={<WithShell><ReviewsPage /></WithShell>} />
+        <Route path="/rulebook" element={<WithShell><RulebookPage /></WithShell>} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

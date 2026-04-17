@@ -1,0 +1,10 @@
+version: "1.0"
+frame:
+  labels:
+    - risk_on
+    - mixed
+    - risk_off
+  questions:
+    - What changed?
+    - What pressure dominates now?
+    - What deserves caution?

@@ -1,0 +1,75 @@
+from investorframe.app.models import IdeaCard
+
+IDEAS = [
+    IdeaCard(
+        ticker="MSFT",
+        company="Microsoft",
+        action="wait",
+        business_summary=(
+            "A durable software and cloud platform with exceptional distribution, "
+            "switching costs, and capital allocation quality."
+        ),
+        bull_case=[
+            "Cloud and productivity remain embedded in enterprise workflows.",
+            (
+                "AI distribution may strengthen the ecosystem rather than "
+                "create a one-off product spike."
+            ),
+            "Balance sheet and management quality reduce fragility.",
+        ],
+        bear_case=[
+            "AI enthusiasm may already be heavily reflected in price.",
+            "Cloud growth could normalize faster than optimistic narratives imply.",
+            "Large-cap expectations leave less room for surprise.",
+        ],
+        assumptions=[
+            "Enterprise software demand remains durable.",
+            "AI monetization expands economics rather than just capital intensity.",
+        ],
+        invalidation=[
+            "Cloud economics deteriorate materially.",
+            "AI spend rises without durable monetization.",
+        ],
+        buy_conditions=[
+            "Expected return improves relative to quality and alternatives.",
+            "The thesis survives a cooling-off period.",
+        ],
+        sell_conditions=[
+            "Thesis quality weakens materially.",
+            "A clearly better opportunity emerges with a wider quality-to-price gap.",
+        ],
+    ),
+    IdeaCard(
+        ticker="COST",
+        company="Costco",
+        action="pass",
+        business_summary=(
+            "A high-quality compounding retailer with strong customer trust, "
+            "but often priced for excellence."
+        ),
+        bull_case=[
+            "Membership economics remain powerful.",
+            "Execution consistency is rare and durable.",
+        ],
+        bear_case=[
+            "Current valuation leaves little room for disappointment.",
+            "Great business does not always equal great entry point.",
+        ],
+        assumptions=[
+            "Membership renewal and traffic strength persist.",
+        ],
+        invalidation=[
+            "Value perception weakens or unit economics deteriorate.",
+        ],
+        buy_conditions=[
+            "Price offers a clearer margin between quality and expectations.",
+        ],
+        sell_conditions=[
+            "Thesis is impaired or expectations become extreme.",
+        ],
+    ),
+]
+
+
+def build_ideas_payload() -> list[dict]:
+    return [idea.model_dump() for idea in IDEAS]

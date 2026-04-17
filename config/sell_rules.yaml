@@ -1,0 +1,10 @@
+version: "1.0"
+rules:
+  - category: thesis_invalidated
+    label: Sell or trim when the original thesis is broken
+  - category: risk_control
+    label: Exit when predefined risk is breached
+  - category: valuation
+    label: Trim when expected return no longer justifies risk
+  - category: better_opportunity
+    label: Reallocate only when a meaningfully better idea exists

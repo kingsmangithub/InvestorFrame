@@ -1,0 +1,12 @@
+version: "1.0"
+checks:
+  - id: thesis_before_action
+    label: Thesis is written before capital is committed
+  - id: anti_thesis_present
+    label: Anti-thesis exists
+  - id: invalidation_defined
+    label: Invalidation conditions are defined
+  - id: no_fomo
+    label: This action is not driven by fear of missing out
+  - id: cooling_off
+    label: Decision survives a cooling-off period
