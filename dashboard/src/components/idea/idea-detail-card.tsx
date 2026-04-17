@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { IdeaData } from "@/content/demo-data";
+import type { IdeaData } from "@/lib/types";
 
 function BulletSection({ title, items }: { title: string; items: string[] }) {
   return (

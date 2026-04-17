@@ -1,12 +1,23 @@
+import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { PageHeader } from "@/components/shared/page-header";
 import { IdeaDetailCard } from "@/components/idea/idea-detail-card";
+import { PageHeader } from "@/components/shared/page-header";
+import { StatusCard } from "@/components/shared/status-card";
 import { Card, CardContent } from "@/components/ui/card";
-import { getIdeaByTicker } from "@/content/demo-data";
+import { useStaticResource } from "@/hooks/use-static-resource";
+import { loadIdeas } from "@/lib/static-data";
 
 export function IdeaPage() {
   const { ticker } = useParams();
-  const idea = getIdeaByTicker(ticker);
+  const ideasState = useStaticResource(loadIdeas);
+
+  const idea = useMemo(
+    () => ideasState.data?.find((item) => item.ticker.toLowerCase() === ticker?.toLowerCase()),
+    [ideasState.data, ticker],
+  );
+
+  if (ideasState.isLoading) return <StatusCard message="Loading idea card..." />;
+  if (ideasState.error) return <StatusCard message={ideasState.error} />;
 
   if (!idea) {
     return (

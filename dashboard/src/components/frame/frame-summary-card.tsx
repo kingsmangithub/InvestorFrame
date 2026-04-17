@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { FrameData } from "@/content/demo-data";
+import type { FrameData } from "@/lib/types";
 
 export function FrameSummaryCard({ data }: { data: FrameData }) {
   return (

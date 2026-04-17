@@ -1,6 +1,7 @@
+import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "default" | "secondary" | "outline" | "ghost";
   size?: "default" | "sm" | "lg" | "icon";
 }

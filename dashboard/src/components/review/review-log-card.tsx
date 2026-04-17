@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { ReviewData } from "@/content/demo-data";
+import type { ReviewData } from "@/lib/types";
 
 export function ReviewLogCard({ items }: { items: ReviewData[] }) {
   return (

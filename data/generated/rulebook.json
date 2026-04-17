@@ -1,0 +1,36 @@
+{
+  "principles": [
+    "Stay inside your circle of competence.",
+    "Write the thesis before touching capital.",
+    "Always write the anti-thesis.",
+    "Price is not the thesis.",
+    "No action is a valid action.",
+    "Review decisions, not just outcomes.",
+    "Protect survival before chasing upside."
+  ],
+  "behavior_gate": [
+    "Thesis is written before action.",
+    "Anti-thesis is written.",
+    "This is not a FOMO-driven action.",
+    "I can explain what would prove me wrong.",
+    "The position fits my risk budget.",
+    "I would still want this after a 48-hour delay."
+  ],
+  "sell_rules": [
+    "Sell or trim when the original thesis breaks.",
+    "Sell or trim when predefined risk is breached.",
+    "Do not average down just to get back to even.",
+    "Reallocate only when a materially better idea exists."
+  ],
+  "wisdom": {
+    "mistake_patterns": [
+      "Buying excitement instead of evidence.",
+      "Holding losers because I want to get back to even.",
+      "Selling winners because gains feel emotionally fragile."
+    ],
+    "good_patterns": [
+      "When I write an anti-thesis, decision quality improves.",
+      "When I delay action, impulse quality drops and clarity improves."
+    ]
+  }
+}

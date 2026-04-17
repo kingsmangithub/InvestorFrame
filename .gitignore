@@ -43,6 +43,7 @@ output/
 node_modules/
 dashboard/node_modules/
 dashboard/dist/
+dashboard/tsconfig.tsbuildinfo
 
 # Claude
 .claude/

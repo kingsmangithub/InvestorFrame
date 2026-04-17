@@ -1,7 +1,8 @@
-import { TopNav } from "./top-nav";
+import type { ReactNode } from "react";
 import { FooterStatus } from "./footer-status";
+import { TopNav } from "./top-nav";
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <TopNav />

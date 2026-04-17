@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { IdeaData } from "@/content/demo-data";
+import type { IdeaData } from "@/lib/types";
 
 export function IdeaListCard({ ideas }: { ideas: IdeaData[] }) {
   return (

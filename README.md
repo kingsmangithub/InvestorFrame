@@ -12,6 +12,18 @@ It is built to help one self-directed investor do five things well:
 
 This is a deliberate refactor away from a heavier market-intelligence shape.
 
+## Product definition
+
+InvestorFrame = **Frame + Idea + Decision Gate + Review + Wisdom**
+
+## Pages
+
+- `/` — home
+- `/desk` — today’s frame and active ideas
+- `/ideas/:ticker` — single idea page
+- `/reviews` — decision quality review log
+- `/rulebook` — investing rules and behavior constraints
+
 ## What changed
 
 The old shape tried to do too much:
@@ -25,72 +37,44 @@ The old shape tried to do too much:
 
 The new shape keeps only the pieces that directly improve decisions.
 
-## Product definition
-
-InvestorFrame = **Frame + Idea + Decision Gate + Review + Wisdom**
-
-## Pages
-
-- `/` — home
-- `/desk` — today’s frame and active ideas
-- `/ideas/:ticker` — single idea page
-- `/reviews` — decision quality review log
-- `/rulebook` — investing rules and behavior constraints
-
-## Architecture
-
-### Frontend
+## Frontend
 - React + Vite
-- static demo data
+- static JSON from `dashboard/public/data`
 - no client-side query cache
 - no state store
 
-### Backend/core
+## Backend/core
 - small Python package
 - YAML-configured rules
 - static JSON build path
 - SQLite optional later, not required on day one
 
-### Deployment
-- Cloudflare Pages for the site
-- GitHub Actions for static data generation later
-- no always-on backend required
+## Build static payloads
 
-## Repository structure
-
-```text
-config/
-  frame_rules.yaml
-  behavior_rules.yaml
-  sell_rules.yaml
-  review_rules.yaml
-  principles.yaml
-
-data/
-  generated/
-
-investorframe/
-  app/
-  frame/
-  discipline/
-  outputs/
-
-dashboard/
-  src/
-    pages/
-    components/
-    content/
+```bash
+python -m pip install -e .
+investorframe-build
+investorframe-sync-data
 ```
 
-## What was intentionally removed
+## Build the site
 
-- `api/`
-- `cli/`
-- live dashboard/report/scenario architecture
-- sentiment analysis layer
-- watchlist scoring engine
-- report templates
-- Docker-first deployment path
+```bash
+cd dashboard
+npm install
+npm run build
+```
+
+## Deployment
+- Cloudflare Pages for the site
+- GitHub Actions for static data generation
+- no always-on backend required
+
+## Docs
+- `docs/REFACTOR_CUT_LIST.md`
+- `docs/LEAN_ARCHITECTURE.md`
+- `docs/FIELD_SPEC.md`
+- `docs/CLOUDFLARE_PAGES_SETUP.md`
 
 ## Operating principle
 

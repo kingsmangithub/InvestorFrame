@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { rulebook } from "@/content/demo-data";
+import type { RulebookData } from "@/lib/types";
 
 function RuleSection({ title, items }: { title: string; items: string[] }) {
   return (
@@ -18,7 +18,7 @@ function RuleSection({ title, items }: { title: string; items: string[] }) {
   );
 }
 
-export function RulebookCard() {
+export function RulebookCard({ rulebook }: { rulebook: RulebookData }) {
   return (
     <div className="space-y-4">
       <Card>
@@ -34,8 +34,8 @@ export function RulebookCard() {
           </ul>
         </CardContent>
       </Card>
-      <RuleSection title="Behavior gate" items={rulebook.behaviorGate} />
-      <RuleSection title="Sell discipline" items={rulebook.sellRules} />
+      <RuleSection title="Behavior gate" items={rulebook.behavior_gate} />
+      <RuleSection title="Sell discipline" items={rulebook.sell_rules} />
       <Card>
         <CardHeader>
           <CardTitle>Wisdom vault</CardTitle>
@@ -45,13 +45,13 @@ export function RulebookCard() {
           <div>
             <div className="text-xs uppercase tracking-wide text-muted-foreground">Mistake patterns</div>
             <ul className="mt-2 space-y-2 text-sm text-muted-foreground list-disc pl-5">
-              {rulebook.wisdom.mistakePatterns.map((item) => <li key={item}>{item}</li>)}
+              {rulebook.wisdom.mistake_patterns.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </div>
           <div>
             <div className="text-xs uppercase tracking-wide text-muted-foreground">Good patterns</div>
             <ul className="mt-2 space-y-2 text-sm text-muted-foreground list-disc pl-5">
-              {rulebook.wisdom.goodPatterns.map((item) => <li key={item}>{item}</li>)}
+              {rulebook.wisdom.good_patterns.map((item) => <li key={item}>{item}</li>)}
             </ul>
           </div>
         </CardContent>
